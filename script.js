@@ -1,7 +1,7 @@
 // Put variables in global scope to make them available to the browser console.
 const video = document.querySelector('video');
 const constraints = {
-  audio: false,
+  audio: true,
   video: true
 };
 
