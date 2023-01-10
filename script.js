@@ -1,9 +1,10 @@
-// Put variables in global scope to make them available to the browser console.
 const video = document.querySelector('video');
 const constraints = {
   audio: true,
   video: true
 };
+
+const cameraOptions = document.querySelector('.custom-select');
 
 navigator.mediaDevices.getUserMedia(constraints)
   .then((stream) => {
@@ -30,3 +31,14 @@ navigator.mediaDevices.getUserMedia(constraints)
       console.error(`getUserMedia error: ${error.name}`, error);
     }
   });
+
+  const getCameraSelection = async () => {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const videoDevices = devices.filter(device => device.kind === 'videoinput');
+    const options = videoDevices.map(videoDevice => {
+      return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
+    });
+    cameraOptions.innerHTML = options.join('');
+  };
+
+ window.onload = getCameraSelection();

@@ -1,8 +1,24 @@
 video {
   width: 99vw;
   height: 99vh;
+  padding: 0;
+  margin: 0;
 }
 
 body {
   background-color: rgb(37, 37, 37);
+  padding: 0;
+  margin: 0;
+}
+
+.custom-select {
+  position: fixed;
+  left: 50%;
+  bottom: 10px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  z-index: 1;
+  background-color: rgb(37, 37, 37);
+  color:antiquewhite;
+  opacity: 0.5;
 }
