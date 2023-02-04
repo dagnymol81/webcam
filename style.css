@@ -11,14 +11,21 @@ body {
   margin: 0;
 }
 
-.custom-select {
+.custom-select, .play, .stop {
+  background-color: rgb(37, 37, 37);
+  color:antiquewhite;
+  opacity: 0.5;
+}
+
+.controls {
   position: fixed;
   left: 50%;
   bottom: 10px;
   transform: translate(-50%, -50%);
   margin: 0 auto;
   z-index: 1;
-  background-color: rgb(37, 37, 37);
-  color:antiquewhite;
-  opacity: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0.5rem;
 }
