@@ -3,6 +3,7 @@ const play = document.querySelector('.play')
 const stop = document.querySelector('.stop')
 
 const getCameraSelection = async () => {
+  await navigator.mediaDevices.getUserMedia({video: true})
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
