@@ -31,8 +31,10 @@ const startStream = async () => {
     video.onloadedmetadata = () => {
       video.play();
     };
-    controls.classList.add('transparent')
   })
+  .then(
+    controls.classList.add('transparent')
+  )
   .catch((err) => {
     console.error(`${err.name}: ${err.message}`);
   });
