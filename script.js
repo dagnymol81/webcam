@@ -1,6 +1,7 @@
 const cameraOptions = document.querySelector('.custom-select');
 const play = document.querySelector('.play')
 const stop = document.querySelector('.stop')
+const controls = document.querySelector('.controls')
 
 const getCameraSelection = async () => {
   await navigator.mediaDevices.getUserMedia({video: true})
@@ -30,6 +31,7 @@ const startStream = async () => {
     video.onloadedmetadata = () => {
       video.play();
     };
+    controls.classList.add('transparent')
   })
   .catch((err) => {
     console.error(`${err.name}: ${err.message}`);

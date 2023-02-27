@@ -19,13 +19,22 @@ body {
 
 .controls {
   position: fixed;
-  left: 50%;
   bottom: 10px;
-  transform: translate(-50%, -50%);
   margin: 0 auto;
   z-index: 1;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  justify-content: center;
   gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.controls:hover {
+  opacity: 1.0
+}
+
+.transparent {
+  opacity: 0.0;
 }
