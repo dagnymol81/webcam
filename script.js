@@ -44,12 +44,11 @@ const stopPlayback = () => {
   const videoElem = document.querySelector('video')
   const stream = videoElem.srcObject;
   const tracks = stream.getTracks();
-
   tracks.forEach((track) => {
     track.stop();
   });
-
   videoElem.srcObject = null;
+  controls.classList.remove('transparent')
 }
 
 cameraOptions.addEventListener("click", (event) => {
