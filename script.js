@@ -1,13 +1,16 @@
-const cameraOptions = document.querySelector('.custom-select');
+const cameraOptions = document.querySelector('#cameras');
 const play = document.querySelector('.play')
-const stop = document.querySelector('.stop')
+const stopBtn = document.querySelector('.stop')
 const controls = document.querySelector('.controls')
+const cameras = new Map()
 
 const getCameraSelection = async () => {
   await navigator.mediaDevices.getUserMedia({video: true})
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
+    const selected = videoDevice.getCapabilities()
+    cameras.set(selected.deviceId, selected)
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
   cameraOptions.innerHTML = options.join('');
@@ -15,14 +18,20 @@ const getCameraSelection = async () => {
 
 window.onload = getCameraSelection();
 
+const startStream = () => {
 
-const startStream = async () => {
+  const camera = cameras.get(cameraOptions.value)
+  let width = camera.width.max
+  let height = camera.height.max
+
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: {
       deviceId: {
-        exact: cameraOptions.value
-      }
+        exact: camera.deviceId
+      },
+      width: { ideal: width },
+      height: { ideal: height }
     }
   })
   .then((mediaStream) => {
@@ -59,6 +68,6 @@ play.addEventListener("click", (event) => {
   startStream()
 })
 
-stop.addEventListener("click", (event) => {
+stopBtn.addEventListener("click", (event) => {
   stopPlayback()
 })
